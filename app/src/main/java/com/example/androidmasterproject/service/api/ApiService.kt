@@ -41,7 +41,6 @@ interface ApiService {
                     .build()
 
 
-            //TODO to insert baseurl inside the gradle
             return Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl("BASE_URL")
