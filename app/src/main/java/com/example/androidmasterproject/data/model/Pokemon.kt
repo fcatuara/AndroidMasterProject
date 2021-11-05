@@ -1,4 +1,4 @@
-package com.example.androidmasterproject.service.model
+package com.example.androidmasterproject.data.model
 
 data class Pokemon(
     val name:String?,

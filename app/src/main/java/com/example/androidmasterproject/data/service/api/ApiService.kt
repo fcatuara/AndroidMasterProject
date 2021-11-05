@@ -1,6 +1,6 @@
-package com.example.androidmasterproject.service.api
+package com.example.androidmasterproject.data.service.api
 
-import com.example.androidmasterproject.service.model.Pokemon
+import com.example.androidmasterproject.data.model.Pokemon
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
