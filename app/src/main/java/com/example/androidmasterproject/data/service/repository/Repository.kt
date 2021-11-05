@@ -1,11 +1,7 @@
 package com.example.androidmasterproject.data.service.repository
 
-import com.example.androidmasterproject.data.service.api.ApiService
-import javax.inject.Inject
+import com.example.androidmasterproject.data.model.Pokemon
 
-class Repository @Inject constructor(
-    private val webService:ApiService
-) {
-
-    suspend fun getUser() = webService.getPokemon()
+interface Repository {
+   suspend fun getPokemon(id: Long): Pokemon
 }

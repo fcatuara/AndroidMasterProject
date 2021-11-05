@@ -18,11 +18,4 @@ object AppModule {
     fun provideApplication(@ApplicationContext application: Context): MainApplication {
         return application as MainApplication
     }
-
-    @Singleton
-    @Provides
-    fun showRandomStringToTestInjection(): String {
-       return "Show a random string to test injection"
-    }
-
 }

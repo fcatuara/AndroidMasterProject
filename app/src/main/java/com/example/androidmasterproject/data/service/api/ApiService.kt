@@ -13,42 +13,5 @@ interface ApiService {
 
     @GET("api/pokemon")
     suspend fun getPokemon(): Pokemon
-
-    companion object {
-        fun create(): ApiService {
-
-            val requestInterceptor = Interceptor { chain ->
-                val url = chain.request()
-                    .url
-                    .newBuilder()
-                    .build()
-
-                val request = chain.request()
-                    .newBuilder()
-                    .url(url)
-                    .build()
-
-                return@Interceptor chain.proceed(request)
-            }
-
-            val okHttpClient: OkHttpClient =
-                OkHttpClient.Builder()
-                    .addInterceptor(requestInterceptor)
-                    .addInterceptor(HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    })
-                    .connectTimeout(60, TimeUnit.SECONDS)
-                    .build()
-
-
-            return Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl("BASE_URL")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(ApiService::class.java)
-
-        }
-    }
 }
 
