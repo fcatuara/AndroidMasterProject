@@ -1,5 +1,6 @@
 package com.example.androidmasterproject.di
 
+import com.example.androidmasterproject.BuildConfig
 import com.example.androidmasterproject.data.service.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -47,7 +48,7 @@ object NetworkModule {
 
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("BASE_URL")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)

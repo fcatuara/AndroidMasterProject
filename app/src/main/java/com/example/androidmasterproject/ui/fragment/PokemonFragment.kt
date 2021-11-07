@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.androidmasterproject.data.model.Result
 import com.example.androidmasterproject.databinding.FragmentPokemonBinding
+import com.example.androidmasterproject.ui.adapter.PokemonsAdapter
 import com.example.androidmasterproject.utils.extension.doIfFailure
 import com.example.androidmasterproject.utils.extension.doIfSuccess
+import com.example.androidmasterproject.utils.extension.print
 import com.example.androidmasterproject.viewmodel.PokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,14 +35,19 @@ class PokemonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         pokemonViewModel.pokemonLiveData.observe(viewLifecycleOwner, {
-            it.doIfSuccess { data ->
-                //TODO set data inside Adapter
-            }
-            it.doIfFailure { error, throwable ->
-                //TODO show error message as you prefer (Toast, dialog, etc..)
+            binding.apply {
+                it.doIfSuccess { data ->
+                    pokemonRecyclerView.adapter = PokemonsAdapter(
+                        ArrayList(data.results.orEmpty())
+                    )
+                }
+                it.doIfFailure { error, throwable ->
+                    Toast.makeText(view.context, error, Toast.LENGTH_LONG).show()
+                    throwable?.print("doIfFailure")
+                }
             }
         })
 
-        pokemonViewModel.getPokemon(234L)
+        pokemonViewModel.getPokemon()
     }
 }

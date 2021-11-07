@@ -1,17 +1,14 @@
 package com.example.androidmasterproject.data.service.api
 
-import com.example.androidmasterproject.data.model.Pokemon
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.androidmasterproject.data.model.Pokemons
 import retrofit2.http.GET
-import java.util.concurrent.TimeUnit
+import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("api/pokemon")
-    suspend fun getPokemon(): Pokemon
+    @GET("pokemon")
+    suspend fun getPokemon(
+        @Query("limit") limit:Int? = 30
+    ): Pokemons
 }
 
