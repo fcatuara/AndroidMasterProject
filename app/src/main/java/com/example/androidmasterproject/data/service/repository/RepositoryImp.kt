@@ -8,4 +8,7 @@ class RepositoryImp (private val apiService:ApiService) : Repository {
     override suspend fun getPokemon(id: Long): Pokemon {
        return apiService.getPokemon()
     }
+
+
+
 }

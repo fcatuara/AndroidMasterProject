@@ -1,5 +1,6 @@
 package com.example.androidmasterproject.utils.extension
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -15,5 +16,14 @@ fun FragmentManager.addFragment(fragment: Fragment, isReplace:Boolean, isAddToBa
             show(fragment)
         }
         commit()
+    }
+}
+
+
+fun View.isVisible(condition: Boolean) {
+    visibility = if (condition) {
+        View.VISIBLE
+    } else {
+        View.GONE
     }
 }

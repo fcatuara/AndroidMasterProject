@@ -26,15 +26,14 @@ class PokemonViewModel @Inject constructor(
 
     fun getPokemon(id: Long) {
         viewModelScope.launch(IO) {
+            pokemon.value = ResultOf.Loading
             try {
                 val response = repository.getPokemon(id)
-                pokemon.postValue(ResultOf.Success(data = response))
+                pokemon.value = ResultOf.Success(data = response)
             } catch (exception: Exception) {
-                pokemon.postValue(
-                    exception.let {
-                        ResultOf.Failure(message = it.message, throwable = it)
-                    }
-                )
+                pokemon.value = exception.let {
+                    ResultOf.Failure(message = it.message, throwable = it)
+                }
             }
         }
     }
