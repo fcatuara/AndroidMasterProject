@@ -66,4 +66,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_plugin_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_plugin_version"
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+
 }

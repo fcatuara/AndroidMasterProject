@@ -8,8 +8,8 @@ inline fun <reified T> ResultOf<T>.doIfFailure(callback: (error: String?, throwa
     }
 }
 
-inline fun <reified T> ResultOf<T>.doIfSuccess(callback: (value: T) -> Unit) {
+inline fun <reified T> ResultOf<T>.doIfSuccess(callback: (data: T) -> Unit) {
     if (this is ResultOf.Success) {
-        callback(value)
+        callback(data)
     }
 }

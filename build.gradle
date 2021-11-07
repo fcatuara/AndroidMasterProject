@@ -4,6 +4,8 @@ buildscript {
     ext.hilt_plugin_version = "2.38.1"
     ext.gradle_plugin_version = "7.0.3"
     ext.hilt_lifecycle_version = "1.0.0"
+    ext.coroutine_version = "1.5.1"
+
 
     repositories {
         google()

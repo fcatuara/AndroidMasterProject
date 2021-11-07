@@ -15,10 +15,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var someRandomString: String
-    @Inject
     lateinit var application:MainApplication
-
     lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        someRandomString.print("test some random string")
         goToPokemonFragment()
     }
 
