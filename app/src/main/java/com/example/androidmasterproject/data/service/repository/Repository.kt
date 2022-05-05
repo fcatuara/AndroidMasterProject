@@ -4,6 +4,6 @@ import com.example.androidmasterproject.data.model.Pokemons
 
 interface Repository {
 
-    suspend fun getPokemons(limit:Int? = null): Pokemons
+    suspend fun getPokemons(limit:Int? = null): Pokemons?
 
 }

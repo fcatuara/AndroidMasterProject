@@ -6,22 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import com.example.androidmasterproject.data.model.Result
 import com.example.androidmasterproject.databinding.FragmentPokemonBinding
 import com.example.androidmasterproject.ui.adapter.PokemonsAdapter
 import com.example.androidmasterproject.utils.extension.doIfFailure
 import com.example.androidmasterproject.utils.extension.doIfSuccess
 import com.example.androidmasterproject.utils.extension.print
 import com.example.androidmasterproject.viewmodel.PokemonViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class PokemonFragment : Fragment() {
 
     private lateinit var binding: FragmentPokemonBinding
-    private val pokemonViewModel: PokemonViewModel by viewModels()
+    private val pokemonViewModel: PokemonViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +34,7 @@ class PokemonFragment : Fragment() {
             binding.apply {
                 it.doIfSuccess { data ->
                     pokemonRecyclerView.adapter = PokemonsAdapter(
-                        ArrayList(data.results.orEmpty())
+                        ArrayList(data?.results.orEmpty())
                     )
                 }
                 it.doIfFailure { error, throwable ->

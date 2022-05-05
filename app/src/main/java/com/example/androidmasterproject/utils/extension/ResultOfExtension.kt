@@ -1,6 +1,6 @@
 package com.example.androidmasterproject.utils.extension
 
-import com.example.androidmasterproject.utils.ResultOf
+import com.example.androidmasterproject.data.service.api.ResultOf
 
 inline fun <reified T> ResultOf<T>.doIfFailure(callback: (error: String?, throwable: Throwable?) -> Unit) {
     if (this is ResultOf.Failure) {
@@ -8,7 +8,7 @@ inline fun <reified T> ResultOf<T>.doIfFailure(callback: (error: String?, throwa
     }
 }
 
-inline fun <reified T> ResultOf<T>.doIfSuccess(callback: (data: T) -> Unit) {
+inline fun <reified T> ResultOf<T>.doIfSuccess(callback: (data: T?) -> Unit) {
     if (this is ResultOf.Success) {
         callback(data)
     }

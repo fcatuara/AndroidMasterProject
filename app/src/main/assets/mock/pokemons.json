@@ -1,0 +1,11 @@
+{
+  "count": 248,
+  "next": "https://pokeapi.co/api/v2/ability/?limit=20&offset=20",
+  "previous": null,
+  "results": [
+    {
+      "name": "stench",
+      "url": "https://pokeapi.co/api/v2/ability/1/"
+    }
+  ]
+}

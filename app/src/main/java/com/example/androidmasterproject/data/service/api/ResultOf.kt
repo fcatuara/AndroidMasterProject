@@ -1,10 +1,10 @@
-package com.example.androidmasterproject.utils
+package com.example.androidmasterproject.data.service.api
 
 
 sealed class ResultOf<out T> {
 
     data class Success<out R>(
-        val data: R
+        val data: R?
     ) : ResultOf<R>()
 
     data class Failure(

@@ -1,21 +1,16 @@
 package com.example.androidmasterproject.di
 
-import com.example.androidmasterproject.data.service.api.ApiService
-import com.example.androidmasterproject.data.service.repository.Repository
-import com.example.androidmasterproject.data.service.repository.RepositoryImp
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import com.example.androidmasterproject.data.service.repository.RepositoryFactory
+import com.example.androidmasterproject.data.service.repository.RepositoryNetwork
+import com.example.androidmasterproject.data.service.repository.RepositoryMocked
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-object RepositoryModule {
 
-    @Singleton
-    @Provides
-    fun provideRepository(apiService: ApiService): Repository {
-        return  RepositoryImp(apiService)
+val repoModule = module {
+    single {
+        RepositoryNetwork(get())
+        RepositoryMocked(get())
+        RepositoryFactory(get(),get())
     }
 }
+
