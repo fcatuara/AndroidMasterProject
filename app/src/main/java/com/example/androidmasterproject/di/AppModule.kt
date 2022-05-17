@@ -20,7 +20,7 @@ private const val READ_TIMEOUT: Long = 30L
 
 val appModule = module {
     single { MainApplication() }
-    single { provideApiService(get()) }
+    single { provideApiService() }
     single { provideRetrofit() }
 }
 
@@ -30,17 +30,17 @@ val utilityModule = module {
     }
 }
 
-private fun provideApiService(retrofit: Retrofit): ApiService =
-    retrofit.create(ApiService::class.java)
+private fun provideApiService(): ApiService =
+    provideRetrofit().create(ApiService::class.java)
 
 
-private fun provideRetrofit() =
-    Retrofit.Builder()
-        .client(provideOkHttpClient())
+fun provideRetrofit(): Retrofit {
+    val builder = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(ApiService::class.java)
+    return builder.client(provideOkHttpClient()).build()
+}
+
 
 
 private fun provideOkHttpClient() = if (BuildConfig.DEBUG) {

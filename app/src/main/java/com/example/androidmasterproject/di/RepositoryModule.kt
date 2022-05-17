@@ -7,10 +7,8 @@ import org.koin.dsl.module
 
 
 val repoModule = module {
-    single {
-        RepositoryNetwork(get())
-        RepositoryMocked(get())
-        RepositoryFactory(get(),get())
-    }
+    single { RepositoryNetwork(get()) }
+    single { RepositoryMocked(get()) }
+    single { RepositoryFactory(get(), get()) }
 }
 

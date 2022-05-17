@@ -13,7 +13,7 @@ import java.util.*
  */
 class RepositoryMocked (private val assetUtils: AssetUtils) : Repository{
 
-    override suspend fun getPokemons(limit: Int?): Pokemons? {
+    override suspend fun getPokemons(limit: Int?,offset:Int?): Pokemons? {
         var body : Pokemons?= null
         withContext(Dispatchers.IO) {
             try {
