@@ -8,13 +8,10 @@ import com.example.androidmasterproject.databinding.MainActivityBinding
 import com.example.androidmasterproject.ui.fragment.PokemonFragment
 import com.example.androidmasterproject.utils.extension.addFragment
 import com.example.androidmasterproject.utils.extension.print
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class MainActivity : AppCompatActivity() {
 
-    @Inject
     lateinit var application:MainApplication
     lateinit var binding: MainActivityBinding
 

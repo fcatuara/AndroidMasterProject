@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    //id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -21,6 +21,7 @@ android {
 
     buildTypes {
         def BASE_URL = "BASE_URL"
+        def IS_MOCKED_REPO = "IS_MOCKED_REPOSITORY"
 
         release {
             minifyEnabled false
@@ -31,8 +32,12 @@ android {
             debuggable true
             minifyEnabled false
             buildConfigField "String", BASE_URL, "\"https://pokeapi.co/api/v2/\""
-
+            buildConfigField "Boolean", IS_MOCKED_REPO, "false"
         }
+
+
+
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -70,11 +75,17 @@ dependencies {
     //gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+
+    /** currently disabled to use koin*/
     //hilt
-    implementation "androidx.hilt:hilt-work:$hilt_lifecycle_version"
+    /*implementation "androidx.hilt:hilt-work:$hilt_lifecycle_version"
     implementation "com.google.dagger:hilt-android:$hilt_plugin_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_version"
-    kapt "com.google.dagger:hilt-compiler:$hilt_plugin_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_plugin_version"*/
+
+    //koin
+    implementation "io.insert-koin:koin-android-viewmodel:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
 
     //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
