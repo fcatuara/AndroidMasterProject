@@ -12,9 +12,9 @@
 
     <fragment
         android:id="@+id/pokemonFragment"
-        android:name="com.example.androidmasterproject.ui.fragment.PokemonFragment"
+        android:name="com.example.androidmasterproject.ui.fragment.MovieFragment"
         android:label="fragment_pokemon"
-        tools:layout="@layout/fragment_pokemon" >
+        tools:layout="@layout/fragment_movie" >
         <action
             android:id="@+id/action_pokemonFragment_to_pokemonDetail"
             app:destination="@id/pokemonDetail" />
@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/pokemonDetail"
-        android:name="com.example.androidmasterproject.ui.fragment.PokemonDetailFragment"
+        android:name="com.example.androidmasterproject.ui.fragment.MovieDetailFragment"
         android:label="fragment_pokemon"
-        tools:layout="@layout/fragment_pokemon_detail" />
+        tools:layout="@layout/fragment_movie_detail" />
 
 
 

@@ -6,35 +6,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.androidmasterproject.databinding.FragmentPokemonBinding
-import com.example.androidmasterproject.ui.adapter.PokemonsAdapter
+import com.example.androidmasterproject.databinding.FragmentMovieBinding
+import com.example.androidmasterproject.ui.adapter.MovieAdapter
 import com.example.androidmasterproject.utils.extension.doIfFailure
 import com.example.androidmasterproject.utils.extension.doIfSuccess
 import com.example.androidmasterproject.utils.extension.print
-import com.example.androidmasterproject.viewmodel.PokemonViewModel
+import com.example.androidmasterproject.viewmodel.MovieViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class PokemonFragment : Fragment() {
+class MovieFragment : Fragment() {
 
-    private lateinit var binding: FragmentPokemonBinding
-    private val pokemonViewModel: PokemonViewModel by viewModel()
+    private lateinit var binding: FragmentMovieBinding
+    private val pokemonViewModel: MovieViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPokemonBinding.inflate(inflater)
+        binding = FragmentMovieBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        pokemonViewModel.pokemonLiveData.observe(viewLifecycleOwner, {
+        pokemonViewModel.moviesLiveData.observe(viewLifecycleOwner, {
             binding.apply {
                 it.doIfSuccess { data ->
-                    pokemonRecyclerView.adapter = PokemonsAdapter(
-                        ArrayList(data?.results.orEmpty())
+                    pokemonRecyclerView.adapter = MovieAdapter(
+                        movieList = ArrayList(data?.results.orEmpty()),
+                        context = view.context
                     )
                 }
                 it.doIfFailure { error, throwable ->

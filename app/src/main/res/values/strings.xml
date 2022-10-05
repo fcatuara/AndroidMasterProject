@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AndroidMasterProject</string>
     <string name="hello_app">Hello App</string>
+    <string name="movies">movies</string>
 </resources>

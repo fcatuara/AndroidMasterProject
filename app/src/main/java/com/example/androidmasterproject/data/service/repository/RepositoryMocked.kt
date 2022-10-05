@@ -1,6 +1,6 @@
 package com.example.androidmasterproject.data.service.repository
 
-import com.example.androidmasterproject.data.model.Pokemons
+import com.example.androidmasterproject.data.model.Movies
 import com.example.androidmasterproject.utils.AssetUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -11,16 +11,17 @@ import java.util.*
 /**
  * you can fetch mocked data from asset/mock folder
  */
+
 class RepositoryMocked (private val assetUtils: AssetUtils) : Repository{
 
-    override suspend fun getPokemons(limit: Int?,offset:Int?): Pokemons? {
-        var body : Pokemons?= null
+    override suspend fun getTopRatedMovies(page: Int?): Movies? {
+        var body : Movies?= null
         withContext(Dispatchers.IO) {
             try {
                 Timer().schedule(object : TimerTask() {
                     override fun run() {
                         val jsonString = assetUtils.getJsonFromAsset("mock/pokemons.json")
-                        val bodyType = object : TypeToken<Pokemons>() {}.type
+                        val bodyType = object : TypeToken<Movies>() {}.type
                         body =  Gson().fromJson(jsonString, bodyType)
                     }
                 }, 3000)
