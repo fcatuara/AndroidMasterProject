@@ -2,4 +2,7 @@
     <string name="app_name">AndroidMasterProject</string>
     <string name="hello_app">Hello App</string>
     <string name="movies">movies</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="popular">Popular</string>
+    <string name="upcoming">Upcoming</string>
 </resources>

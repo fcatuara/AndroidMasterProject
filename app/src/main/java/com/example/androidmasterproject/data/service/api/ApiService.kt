@@ -15,5 +15,17 @@ interface ApiService {
         @Query("page") page:Int?,
         ): Movies?
 
+    @GET(popularMovies)
+    suspend fun getPopularMovies(
+        @Query("api_key") apiKey:String = "0674eefa6fa61be1f3868472e8d4803f",
+        @Query("page") page:Int?,
+    ): Movies?
+
+    @GET(upcomingMovies)
+    suspend fun getUpcomingMovies(
+        @Query("api_key") apiKey:String = "0674eefa6fa61be1f3868472e8d4803f",
+        @Query("page") page:Int?,
+    ): Movies?
+
 }
 

@@ -1,5 +1,6 @@
 package com.example.androidmasterproject.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,34 +18,88 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MovieFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieBinding
-    private val pokemonViewModel: MovieViewModel by viewModel()
+    private val movieViewModel: MovieViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        print("MovieFragment - onCreateView")
         binding = FragmentMovieBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        print("MovieFragment - onViewCreated")
 
-        pokemonViewModel.moviesLiveData.observe(viewLifecycleOwner, {
-            binding.apply {
+        movieViewModel.let {
+            view.context.apply {
+                observeTopRated()
+                observePopular()
+                observeUpcoming()
+            }
+            it.getTopRated()
+            it.getPopular()
+            it.getUpcoming()
+        }
+
+    }
+
+
+    private fun Context.observeTopRated() {
+
+        movieViewModel.moviesTopRatedLiveData.observe(viewLifecycleOwner, {
+            print("MovieFragment - observe top rated ")
+            binding.let { view ->
                 it.doIfSuccess { data ->
-                    pokemonRecyclerView.adapter = MovieAdapter(
+                    view.topRatedRecyclerView.adapter = MovieAdapter(
                         movieList = ArrayList(data?.results.orEmpty()),
-                        context = view.context
+                        context = this
                     )
                 }
                 it.doIfFailure { error, throwable ->
-                    Toast.makeText(view.context, error, Toast.LENGTH_LONG).show()
-                    throwable?.print("doIfFailure")
+                    Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+    }
+
+    private fun Context.observePopular() {
+
+        movieViewModel.moviesPopularLiveData.observe(viewLifecycleOwner, {
+            print("MovieFragment - observe popular ")
+            binding.let { view ->
+                it.doIfSuccess { data ->
+                    view.popularRecyclerView.adapter = MovieAdapter(
+                        movieList = ArrayList(data?.results.orEmpty()),
+                        context = this
+                    )
+                }
+                it.doIfFailure { error, throwable ->
+                    Toast.makeText(this, error, Toast.LENGTH_LONG).show()
                 }
             }
         })
 
-        pokemonViewModel.getPokemon()
+    }
+
+    private fun Context.observeUpcoming() {
+
+        movieViewModel.moviesUpcomingLiveData.observe(viewLifecycleOwner, {
+            print("MovieFragment - observe upcoming ")
+            binding.let { view ->
+                it.doIfSuccess { data ->
+                    view.upcomingRecyclerView.adapter = MovieAdapter(
+                        movieList = ArrayList(data?.results.orEmpty()),
+                        context = this
+                    )
+                }
+                it.doIfFailure { error, throwable ->
+                    Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+
     }
 }

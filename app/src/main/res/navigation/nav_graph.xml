@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/pokemonFragment">
+    app:startDestination="@id/movieFragment">
 
     <action
-        android:id="@+id/action_pokemon_fragment"
-        app:destination="@id/pokemonFragment" />
+        android:id="@+id/action_movie_fragment"
+        app:destination="@id/movieFragment" />
 
 
     <fragment
-        android:id="@+id/pokemonFragment"
+        android:id="@+id/movieFragment"
         android:name="com.example.androidmasterproject.ui.fragment.MovieFragment"
         android:label="fragment_pokemon"
         tools:layout="@layout/fragment_movie" >
         <action
-            android:id="@+id/action_pokemonFragment_to_pokemonDetail"
-            app:destination="@id/pokemonDetail" />
+            android:id="@+id/action_movieFragment_to_movieDetail"
+            app:destination="@id/movieDetail" />
     </fragment>
 
 
     <fragment
-        android:id="@+id/pokemonDetail"
+        android:id="@+id/movieDetail"
         android:name="com.example.androidmasterproject.ui.fragment.MovieDetailFragment"
         android:label="fragment_pokemon"
         tools:layout="@layout/fragment_movie_detail" />

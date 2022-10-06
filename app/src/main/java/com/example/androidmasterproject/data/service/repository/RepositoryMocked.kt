@@ -33,4 +33,12 @@ class RepositoryMocked (private val assetUtils: AssetUtils) : Repository{
         }
         return body
     }
+
+    override suspend fun getPopularMovies(page: Int?): Movies? {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getUpcomingMovies(page: Int?): Movies? {
+        TODO("Not yet implemented")
+    }
 }
