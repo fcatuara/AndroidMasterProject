@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">AndroidMasterProject</string>
     <string name="hello_app">Hello App</string>
+    <string name="movies">movies</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="popular">Popular</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="resend">Non hai ricevuto l\'sms? Invia di nuovo</string>
+
 </resources>
