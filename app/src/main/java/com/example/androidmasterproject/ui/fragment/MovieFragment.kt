@@ -11,6 +11,7 @@ import com.example.androidmasterproject.databinding.FragmentMovieBinding
 import com.example.androidmasterproject.ui.adapter.MovieAdapter
 import com.example.androidmasterproject.utils.extension.doIfFailure
 import com.example.androidmasterproject.utils.extension.doIfSuccess
+import com.example.androidmasterproject.utils.extension.makeLinks
 import com.example.androidmasterproject.utils.extension.print
 import com.example.androidmasterproject.viewmodel.MovieViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -43,6 +44,13 @@ class MovieFragment : Fragment() {
             it.getPopular()
             it.getUpcoming()
         }
+
+
+        binding.topRated.makeLinks(
+            Pair("Invia di nuovo", View.OnClickListener {
+                Toast.makeText(view.context, "callllll", Toast.LENGTH_SHORT).show()
+            }),
+        )
 
     }
 
