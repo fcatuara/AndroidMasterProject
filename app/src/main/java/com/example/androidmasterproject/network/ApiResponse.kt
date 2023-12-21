@@ -2,6 +2,8 @@ package com.example.androidmasterproject.network
 
 import java.io.IOException
 
+typealias ApiCall<Body> = ApiResponse<Body, Error>
+
 sealed class ApiResponse<out Body : Any, out Error : Any> {
 
     data class Success<Body : Any>(val body: Body) : ApiResponse<Body, Nothing>()

@@ -1,6 +1,6 @@
 package com.example.androidmasterproject
 
-data class Movies(
+data class MoviesApiModel(
     val page: Int?,
     val results: List<Result>?,
     val total_pages: Int?,
