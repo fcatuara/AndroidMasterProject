@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -16,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.androidmasterproject"
-        minSdkVersion 23
+        minSdkVersion 26
         //TODO:[GRADLE APP] update targetSdkVersion to 34
         targetSdkVersion 33
         versionCode 1
@@ -100,6 +101,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     //Carbon
     api 'tk.zielony:carbon:0.16.0.1'

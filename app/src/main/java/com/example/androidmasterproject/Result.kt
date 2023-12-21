@@ -1,4 +1,4 @@
-package com.example.androidmasterproject.data.model
+package com.example.androidmasterproject
 
 data class Result(
     val adult: Boolean?,
