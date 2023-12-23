@@ -11,8 +11,16 @@ android {
    // buildToolsVersion "30.0.3"
 
     //TODO:[GRADLE APP] Can this field be eliminated?
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
 
     defaultConfig {
@@ -41,10 +49,6 @@ android {
             buildConfigField "String", BASE_URL, "\"https://api.themoviedb.org/3/\""
             buildConfigField "Boolean", IS_MOCKED_REPO, "false"
         }
-
-
-
-
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -87,7 +91,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
 
-
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
@@ -95,6 +98,22 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     // Jetpack Compose Integration
+    def composeBom = platform('androidx.compose:compose-bom:2023.10.01')
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    implementation "androidx.activity:activity-compose:1.8.2"
+    implementation "androidx.compose.foundation:foundation:1.5.4"
+    implementation "androidx.compose.material:material:1.5.4"
+
+    // Android Studio Preview support
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+
+    // UI Tests
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     //Glide

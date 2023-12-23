@@ -4,6 +4,7 @@ import com.example.androidmasterproject.BuildConfig
 import com.example.androidmasterproject.feature.movie.data.remote.MovieApi
 import com.example.androidmasterproject.core.network.interceptor.HttpRequestInterceptor
 import com.example.androidmasterproject.core.network.adapter.ApiResponseAdapterFactory
+import com.example.androidmasterproject.feature.movie.data.remote.MovieRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,6 +45,11 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMovieService(retrofit: Retrofit): MovieApi =
+    fun provideMovieApi(retrofit: Retrofit): MovieApi =
         retrofit.create(MovieApi::class.java)
+
+   /* @Provides
+    @Singleton
+    fun provideMovieRemoteDataSource(apiService: MovieApi): MovieRemoteDataSource =
+        MovieRemoteDataSource(apiService)*/
 }

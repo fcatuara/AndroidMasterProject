@@ -1,33 +1,28 @@
 package com.example.androidmasterproject.feature.movie.data.repository
 
 import com.example.androidmasterproject.core.mapper.Mapper
-import com.example.androidmasterproject.core.network.adapter.ApiCall
 import com.example.androidmasterproject.core.network.adapter.ApiResponse
-import com.example.androidmasterproject.feature.movie.data.local.MovieLocalDataSource
-import com.example.androidmasterproject.feature.movie.data.remote.MovieDto
 import com.example.androidmasterproject.feature.movie.data.remote.MovieRemoteDataSource
+import com.example.androidmasterproject.feature.movie.data.remote.dto.MovieDto
 import com.example.androidmasterproject.feature.movie.domain.model.Movie
 import com.example.androidmasterproject.feature.movie.domain.repository.MovieRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class MovieRepositoryImpl (
+class MovieRepositoryImpl @Inject constructor (
     private val remoteSource: MovieRemoteDataSource,
-    private val localSource: MovieLocalDataSource,
     private val movieDataMapper: Mapper<MovieDto, Movie>
 ) : MovieRepository {
 
-    override suspend fun getMovieList(
+    override suspend fun getMovieById(
         forceFetchFromRemote: Boolean,
-        category: String,
-        page: Int
-    ): Flow<ApiCall<List<Movie>>> {
-        remoteSource.getMovies().map {
-            if (it is ApiResponse.Success){
-                it.body.map { item -> movieDataMapper.map(item) }
-            }
-        }
-        return flowOf()
+        id: Int
+    ): Flow<Movie> {
+        return remoteSource.getMovieById().map {
+            movieDataMapper.map((it as ApiResponse.Success).body)
+        }.flowOn(Dispatchers.IO)
     }
 }

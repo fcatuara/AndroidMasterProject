@@ -6,9 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    suspend fun getMovieList(
+    suspend fun getMovieById(
         forceFetchFromRemote: Boolean,
-        category: String,
-        page: Int
-    ): Flow<ApiCall<List<Movie>>>
+        id: Int
+    ): Flow<Movie>
 }
