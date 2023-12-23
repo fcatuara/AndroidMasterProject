@@ -1,10 +1,9 @@
-package com.example.androidmasterproject.di
+package com.example.androidmasterproject.core.di
 
 import com.example.androidmasterproject.BuildConfig
-import com.example.androidmasterproject.MovieClient
-import com.example.androidmasterproject.MovieService
-import com.example.androidmasterproject.interceptor.HttpRequestInterceptor
-import com.example.androidmasterproject.network.ApiResponseAdapterFactory
+import com.example.androidmasterproject.feature.movie.data.remote.MovieApi
+import com.example.androidmasterproject.core.network.interceptor.HttpRequestInterceptor
+import com.example.androidmasterproject.core.network.adapter.ApiResponseAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +14,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-//TODO:[RETROFIT] what's about MoshiConverterFactory ?
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
@@ -38,6 +36,7 @@ internal object NetworkModule {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(BuildConfig.BASE_URL)
+             //TODO:[Retrofit] what's about MoshiConverterFactory ?
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(apiResponseAdapterFactory)
             .build()
@@ -45,10 +44,6 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMovieService(retrofit: Retrofit): MovieService =
-        retrofit.create(MovieService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideMovieClient(movieService: MovieService): MovieClient = MovieClient(movieService)
+    fun provideMovieService(retrofit: Retrofit): MovieApi =
+        retrofit.create(MovieApi::class.java)
 }

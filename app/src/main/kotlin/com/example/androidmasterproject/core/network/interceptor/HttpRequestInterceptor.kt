@@ -1,4 +1,4 @@
-package com.example.androidmasterproject.interceptor
+package com.example.androidmasterproject.core.network.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

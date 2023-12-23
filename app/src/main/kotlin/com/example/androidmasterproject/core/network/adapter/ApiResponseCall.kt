@@ -1,4 +1,4 @@
-package com.example.androidmasterproject.network
+package com.example.androidmasterproject.core.network.adapter
 
 import okhttp3.Request
 import okhttp3.ResponseBody

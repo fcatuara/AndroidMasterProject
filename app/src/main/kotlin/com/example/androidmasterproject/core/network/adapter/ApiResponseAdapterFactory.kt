@@ -1,4 +1,4 @@
-package com.example.androidmasterproject.network
+package com.example.androidmasterproject.core.network.adapter
 
 import retrofit2.Call
 import retrofit2.CallAdapter
