@@ -13,7 +13,7 @@ interface MovieApi {
 
     @GET(MOVIE_DETAIL)
     suspend fun getMovieById(
-        @Query("api_key") apiKey:String = "0674eefa6fa61be1f3868472e8d4803f",
         @Path("movie_id") id:Int,
+        @Query("api_key") apiKey:String = "0674eefa6fa61be1f3868472e8d4803f",
     ): ApiCall<MovieDto>
 }

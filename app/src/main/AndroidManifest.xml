@@ -15,7 +15,7 @@
         android:allowBackup="true">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".core.MovieActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -14,7 +14,7 @@ data class MovieDto(
     @SerializedName("original_language") val originalLanguage: String? = null,
     @SerializedName("original_title") val originalTitle: String? = null,
     @SerializedName("overview") val overview: String? = null,
-    @SerializedName("popularity") val popularity: Int? = null,
+    @SerializedName("popularity") val popularity: Double? = null,
     @SerializedName("poster_path") val posterPath: String? = null,
     @SerializedName("production_companies") val productionCompanies: List<ProductionCompanyDto>? = null,
     @SerializedName("production_countries") val productionCountries: List<ProductionCountryDto>? = null,

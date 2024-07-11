@@ -12,17 +12,23 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class MovieRepositoryImpl @Inject constructor (
+class MovieRepositoryImpl @Inject constructor(
     private val remoteSource: MovieRemoteDataSource,
     private val movieDataMapper: Mapper<MovieDto, Movie>
 ) : MovieRepository {
 
     override suspend fun getMovieById(
-        forceFetchFromRemote: Boolean,
         id: Int
     ): Flow<Movie> {
         return remoteSource.getMovieById().map {
-            movieDataMapper.map((it as ApiResponse.Success).body)
+            when (it) {
+                is ApiResponse.Success ->
+                    movieDataMapper.map(it.body)
+
+                else -> {
+                    Movie(title = "Error")
+                }
+            }
         }.flowOn(Dispatchers.IO)
     }
 }

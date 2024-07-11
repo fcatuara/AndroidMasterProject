@@ -1,18 +1,22 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-kapt'
     id("com.google.dagger.hilt.android")
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     //TODO:[GRADLE APP] Can this field be eliminated?
    // buildToolsVersion "30.0.3"
 
-    //TODO:[GRADLE APP] Can this field be eliminated?
     buildFeatures {
         compose true
+    }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding true
     }
 
     composeOptions {
@@ -26,8 +30,7 @@ android {
     defaultConfig {
         applicationId "com.example.androidmasterproject"
         minSdkVersion 26
-        //TODO:[GRADLE APP] update targetSdkVersion to 34
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
 
@@ -36,7 +39,6 @@ android {
 
     buildTypes {
         def BASE_URL = "BASE_URL"
-        def IS_MOCKED_REPO = "IS_MOCKED_REPOSITORY"
 
         release {
             minifyEnabled false
@@ -47,18 +49,12 @@ android {
             debuggable true
             minifyEnabled false
             buildConfigField "String", BASE_URL, "\"https://api.themoviedb.org/3/\""
-            buildConfigField "Boolean", IS_MOCKED_REPO, "false"
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    buildFeatures {
-        viewBinding true
-    }
-
 
     kotlinOptions {
         jvmTarget = '1.8'
@@ -68,8 +64,8 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
@@ -104,7 +100,9 @@ dependencies {
 
     implementation "androidx.activity:activity-compose:1.8.2"
     implementation "androidx.compose.foundation:foundation:1.5.4"
+    implementation 'androidx.compose.material3:material3'
     implementation "androidx.compose.material:material:1.5.4"
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     // Android Studio Preview support
     implementation 'androidx.compose.ui:ui-tooling-preview'
@@ -117,12 +115,12 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
     // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 
     implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
 
     //Carbon
     api 'tk.zielony:carbon:0.16.0.1'
