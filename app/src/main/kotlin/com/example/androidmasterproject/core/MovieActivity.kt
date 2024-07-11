@@ -5,12 +5,11 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.androidmasterproject.core.ui.ComposeAppTheme
+import com.example.androidmasterproject.core.ui.composecourse.CircleCardScreen
+import com.example.androidmasterproject.core.ui.composecourse.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,19 +22,18 @@ class MovieActivity : ComponentActivity() {
         Log.i(TAG, "onCreate")
         setContent {
             ComposeAppTheme {
-                /*Surface(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Button(
-                        onClick = { viewModel.getMovieDetail() },
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        Text("Click Me")
-                    }
-                    Text(viewModel.movieDetailUiState.value.toString())
-                }*/
-                MovieScreen(viewModel = viewModel)
+                //MovieScreen()
+                MainScreen()
             }
+        }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun MainActivityPreview() {
+        ComposeAppTheme {
+            //MovieScreen()
+            MainScreen()
         }
     }
 
