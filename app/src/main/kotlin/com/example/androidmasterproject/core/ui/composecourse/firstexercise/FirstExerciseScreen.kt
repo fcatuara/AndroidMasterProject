@@ -1,4 +1,4 @@
-package com.example.androidmasterproject.core.ui.composecourse
+package com.example.androidmasterproject.core.ui.composecourse.firstexercise
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MainScreen() {
+fun FirstExerciseScreen() {
     Surface(
         modifier = Modifier
             .fillMaxHeight()
@@ -124,7 +124,7 @@ fun CircleCardScreen() {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
+    FirstExerciseScreen()
 }
 
 @Preview(showBackground = true)

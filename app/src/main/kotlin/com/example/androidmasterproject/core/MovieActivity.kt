@@ -7,9 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.androidmasterproject.core.ui.ComposeAppTheme
-import com.example.androidmasterproject.core.ui.composecourse.CircleCardScreen
-import com.example.androidmasterproject.core.ui.composecourse.MainScreen
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,20 +19,22 @@ class MovieActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         Log.i(TAG, "onCreate")
         setContent {
-            ComposeAppTheme {
-                //MovieScreen()
+
+            /*ComposeAppTheme {
+                MovieScreen()
                 MainScreen()
-            }
+            }*/
         }
     }
 
     @Preview(showBackground = true)
     @Composable
     fun MainActivityPreview() {
-        ComposeAppTheme {
-            //MovieScreen()
+
+        /*ComposeAppTheme {
+            MovieScreen()
             MainScreen()
-        }
+        }*/
     }
 
     companion object {
